@@ -3,6 +3,7 @@ package grupo5.demo;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Produto {
@@ -15,14 +16,20 @@ public class Produto {
     private Double preco;
     private Integer quantidadeEmEstoque;
 
+    @ManyToOne
+    private Categoria categoria;
+
     public Produto() {}
 
-    public Produto(String nome, String descricao, Double preco, Integer quantidadeEmEstoque) {
+    public Produto(String nome, String descricao, Double preco, Integer quantidadeEmEstoque, Categoria categoria) {
         this.nome = nome;
         this.descricao = descricao;
         this.preco = preco;
         this.quantidadeEmEstoque = quantidadeEmEstoque;
+        this.categoria = categoria;
     }
+
+    // Getters e Setters...
 
     public Long getId() {
         return id;
@@ -62,5 +69,13 @@ public class Produto {
 
     public void setQuantidadeEmEstoque(Integer quantidadeEmEstoque) {
         this.quantidadeEmEstoque = quantidadeEmEstoque;
+    }
+
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
     }
 }
