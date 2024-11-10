@@ -4,13 +4,17 @@ import ProductCard from './ProductCard';
 import { fetchProdutos } from '../services/api';
 
 const ProductList = ({ carrinho, setCarrinho, updateSubtotal }) => {
-  const [produtos, setProdutos] = useState([]);
+  const [produtos, setProdutos] = useState([]); // Inicializando como um array vazio
   const [loading, setLoading] = useState(true);
   const [mensagem, setMensagem] = useState('');
 
   const loadProdutos = async () => {
     const data = await fetchProdutos();
-    setProdutos(data);
+    if (Array.isArray(data)) {  // Garantindo que a resposta seja um array
+      setProdutos(data);
+    } else {
+      console.error('A resposta não é um array:', data);
+    }
     setLoading(false);
   };
 
