@@ -1,0 +1,27 @@
+.cart-section {
+    margin-top: 40px;
+    font-size: 1.1rem;
+  }
+  
+  .cart-title {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .cart-item {
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+  }
+  
+  .cart-subtotal {
+    font-size: 1.6rem;
+    font-weight: bold;
+    margin-top: 20px;
+    color: #333;
+  }
+  
+  .cart-empty {
+    font-size: 1.2rem;
+    color: #888;
+  }
