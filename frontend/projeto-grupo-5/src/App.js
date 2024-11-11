@@ -1,37 +1,25 @@
-import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';  
-import ProductList from './components/ProductList';
-import Cart from './pages/Cart';
-import Header from './components/Header';
-import AdminPage from './pages/AdminPage';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import Home from './pages/Home';
+import ProductDetail from './pages/ProductDetail'; 
+import Cart from './components/Cart';
+import Admin from './pages/Admin';
+import Products from './pages/Products';
 
-const App = () => {
-  const [carrinho, setCarrinho] = useState([]);
-  const [subtotal, setSubtotal] = useState(0);
-
-  const updateSubtotal = (carrinho) => {
-    if (Array.isArray(carrinho)) {
-      const newSubtotal = carrinho.reduce((acc, produto) => acc + produto.preco, 0);
-      setSubtotal(newSubtotal);
-    }
-  };
-
-  const handleCheckout = () => {
-    alert('Compra finalizada!');
-    setCarrinho([]);
-    setSubtotal(0);
-  };
-
+function App() {
   return (
     <Router>
-      <Header />
+      <Navbar />
       <Routes>
-        <Route path="/" element={<ProductList carrinho={carrinho} setCarrinho={setCarrinho} updateSubtotal={updateSubtotal} />} />
-        <Route path="/cart" element={<Cart carrinho={carrinho} subtotal={subtotal} onCheckout={handleCheckout} updateSubtotal={updateSubtotal} setCarrinho={setCarrinho} />} />
-        <Route path="/admin" element={<AdminPage />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/produtos" element={<Products />} />
+        <Route path="/produtos/:productId" element={<ProductDetail />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/admin" element={<Admin />} />
       </Routes>
     </Router>
   );
-};
+}
 
 export default App;
