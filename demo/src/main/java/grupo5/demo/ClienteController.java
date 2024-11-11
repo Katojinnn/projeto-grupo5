@@ -10,7 +10,6 @@ public class ClienteController {
     @Autowired
     private ClienteRepo clienteRepo;
 
-    // GET: Listar todos os clientes
     @GetMapping
     public Iterable<Cliente> listarClientes() {
         return clienteRepo.findAll();
