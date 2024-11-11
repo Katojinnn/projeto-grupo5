@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import ProductCard from '../components/ProductCard';
 import { useNavigate } from 'react-router-dom';
+import { API_URL } from '../services/Api';
 
 function Products() {
   const [products, setProducts] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_API_URL}/produtos`)
+    fetch(`${API_URL}/produtos`)
       .then(response => response.json())
       .then(data => {
         if (Array.isArray(data)) {

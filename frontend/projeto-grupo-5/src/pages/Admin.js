@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { API_URL } from '../services/Api';
 
 function Admin() {
   const [produtos, setProdutos] = useState([]);
@@ -6,11 +7,17 @@ function Admin() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_API_URL}/produtos`)
+    fetch(`${API_URL}/produtos`)
       .then(response => response.json())
       .then(data => {
         console.log("Produtos carregados:", data);
-        setProdutos(data);
+        // Verifique se data é um array antes de definir os produtos
+        if (Array.isArray(data)) {
+          setProdutos(data);
+        } else {
+          console.error("Resposta inválida, esperado um array", data);
+          setProdutos([]); // Defina um array vazio em caso de resposta inesperada
+        }
         setLoading(false);
       })
       .catch(error => {
@@ -20,7 +27,7 @@ function Admin() {
   }, []);
 
   const handleCriarProduto = () => {
-    fetch(`${process.env.REACT_APP_API_URL}/produtos`, {
+    fetch(`${API_URL}/produtos`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -36,7 +43,7 @@ function Admin() {
   };
 
   const handleDeletarProduto = (id) => {
-    fetch(`${process.env.REACT_APP_API_URL}/produtos/${id}`, {
+    fetch(`${API_URL}/produtos/${id}`, {
       method: 'DELETE',
     })
       .then(() => {
@@ -85,15 +92,17 @@ function Admin() {
       <div className="product-list">
         <h2>Produtos Existentes</h2>
         <ul>
-          {produtos.length === 0 ? (
-            <p>Nenhum produto encontrado.</p>
-          ) : (
+          {Array.isArray(produtos) && produtos.length > 0 ? (
             produtos.map(produto => (
-              <li key={produto.id} className="product-item">
-                <p>{produto.nome} - R$ {produto.preco.toFixed(2)}</p>
-                <button onClick={() => handleDeletarProduto(produto.id)}>Deletar</button>
-              </li>
+              produto && produto.id ? (
+                <li key={produto.id} className="product-item">
+                  <p>{produto.nome} - R$ {produto.preco ? produto.preco.toFixed(2) : '0.00'}</p>
+                  <button onClick={() => handleDeletarProduto(produto.id)}>Deletar</button>
+                </li>
+              ) : null
             ))
+          ) : (
+            <p>Nenhum produto encontrado.</p>
           )}
         </ul>
       </div>

@@ -16,7 +16,6 @@ function Cart() {
   };
 
   const handleCheckout = () => {
-    // Handle checkout logic
     alert("Pedido realizado com sucesso!");
     setCart([]);
     localStorage.setItem('cart', JSON.stringify([]));

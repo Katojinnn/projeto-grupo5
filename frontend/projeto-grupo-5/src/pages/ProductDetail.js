@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import './ProductDetail.css';
+import { API_URL } from '../services/Api';
 
 function ProductDetail() {
   const { id } = useParams();
@@ -8,7 +9,7 @@ function ProductDetail() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_API_URL}/produtos/${id}`)
+    fetch(`${API_URL}/produtos/${id}`)
       .then(response => response.json())
       .then(data => {
         setProduto(data);

@@ -1,4 +1,4 @@
-const API_URL = process.env.REACT_APP_API_URL;
+const API_URL = 'https://poisonous-spooky-spirit-wr7xjgv9q54rhv47j-8080.app.github.dev/api';
 
 export const getProdutos = async () => {
   const response = await fetch(`${API_URL}/produtos`);
@@ -51,3 +51,5 @@ export const criarCliente = async (cliente) => {
   }
   return response.json();
 };
+
+export default Api;
