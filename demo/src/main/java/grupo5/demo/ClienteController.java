@@ -10,7 +10,6 @@ public class ClienteController {
     @Autowired
     private ClienteRepo clienteRepo;
 
-    // GET: Listar todos os clientes
     @GetMapping
     public Iterable<Cliente> listarClientes() {
         return clienteRepo.findAll();
@@ -37,7 +36,6 @@ public class ClienteController {
                 });
     }
 
-    // DELETE: Deletar um cliente
     @DeleteMapping("/{id}")
     public void deletarCliente(@PathVariable long id) {
         clienteRepo.deleteById(id);

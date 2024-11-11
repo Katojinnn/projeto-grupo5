@@ -16,13 +16,11 @@ public class ProdutoController {
         return produtoRepo.findAll();
     }
 
-    // POST para adicionar um novo produto
     @PostMapping
     public Produto adicionarProduto(@RequestBody Produto produto) {
         return produtoRepo.save(produto);
     }
 
-    // PUT para atualizar um produto existente
     @PutMapping("/{id}")
     public Produto atualizarProduto(@PathVariable long id, @RequestBody Produto produtoAtualizado) {
         return produtoRepo.findById(id)
