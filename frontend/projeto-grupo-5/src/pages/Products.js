@@ -5,20 +5,28 @@ import { API_URL } from '../services/Api';
 
 function Products() {
   const [products, setProducts] = useState([]);
+  const [error, setError] = useState(null); // Para exibir erros de forma mais clara
   const navigate = useNavigate();
 
   useEffect(() => {
+    // Faz a requisição para obter os produtos
     fetch(`${API_URL}/produtos`)
       .then(response => response.json())
       .then(data => {
+        console.log("Produtos recebidos:", data);
+        
+        // Verifica se a resposta é um array e se tem o formato correto
         if (Array.isArray(data)) {
-          setProducts(data);
+          setProducts(data); // Atualiza o estado com os produtos
         } else {
-          console.error("Dados de produtos não estão no formato esperado.");
+          setError("Dados de produtos não estão no formato esperado.");
         }
       })
-      .catch(error => console.error("Erro ao carregar produtos:", error));
-  }, []);
+      .catch(error => {
+        setError("Erro ao carregar produtos: " + error.message);
+        console.error("Erro ao carregar produtos:", error);
+      });
+  }, []); // O efeito roda uma vez quando o componente for montado
 
   const addToCart = (product) => {
     let currentCart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -35,14 +43,22 @@ function Products() {
   return (
     <div className="products">
       <h1>Produtos</h1>
+      
+      {/* Exibe erro se houver */}
+      {error && <p className="error">{error}</p>}
+
       <div className="product-list">
-        {products.map((product) => (
-          <ProductCard
-            key={product.id}
-            product={product}
-            onAddToCart={addToCart}
-          />
-        ))}
+        {products.length === 0 ? (
+          <p>Carregando produtos...</p> // Exibe uma mensagem enquanto carrega os produtos
+        ) : (
+          products.map((product) => (
+            <ProductCard
+              key={product.id}
+              product={product}
+              onAddToCart={addToCart}
+            />
+          ))
+        )}
       </div>
 
       <div className="cart-info">
