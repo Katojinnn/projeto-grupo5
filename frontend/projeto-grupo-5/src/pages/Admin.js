@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { API_URL } from '../services/Api';
+import '../styles/Admin.css';
 
 function Admin() {
   const [produtos, setProdutos] = useState([]);

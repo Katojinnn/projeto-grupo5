@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import './ProductDetail.css';
+import '../styles/ProductDetail.css';
 import { API_URL } from '../services/Api';
 
 function ProductDetail() {
