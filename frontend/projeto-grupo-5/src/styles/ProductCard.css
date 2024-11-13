@@ -1,50 +1,75 @@
 .product-card {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    width: 250px;
-    margin: 15px;
-    transition: transform 0.3s;
-  }
-  
-  .product-card:hover {
-    transform: scale(1.05);
-  }
-  
-  .product-image {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-  }
-  
-  .product-info {
-    padding: 15px;
-  }
-  
-  .product-info h2 {
-    font-size: 1.2rem;
-    margin-bottom: 10px;
-  }
-  
-  .product-info p {
-    font-size: 1rem;
-    margin: 5px 0;
-  }
-  
-  .view-details-button {
-    display: inline-block;
-    padding: 10px;
-    background-color: #007bff;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    text-align: center;
-    margin-top: 10px;
-  }
-  
-  .view-details-button:hover {
-    background-color: #0056b3;
-  }
-  
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  width: 300px; /* Largura maior para um visual mais espaçoso */
+  margin: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: center; /* Centraliza o conteúdo dentro do card */
+}
+
+.product-card:hover {
+  transform: translateY(-5px); /* Efeito de elevação */
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15); /* Sombras mais fortes */
+}
+
+.product-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-bottom: 2px solid #f1f1f1; /* Linha abaixo da imagem para separar */
+}
+
+.product-info {
+  padding: 20px;
+}
+
+.product-info h2 {
+  font-size: 1.6rem; /* Aumenta o nome do produto */
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #333; /* Cor do texto mais escuro para destaque */
+}
+
+.product-info p {
+  font-size: 1rem;
+  margin: 5px 0;
+  color: #666; /* Texto mais claro para a descrição */
+}
+
+.view-details-button {
+  display: inline-block;
+  padding: 12px 20px;
+  background-color: #28a745; /* Cor verde para o botão */
+  color: white;
+  font-size: 1rem;
+  text-decoration: none;
+  border-radius: 5px;
+  margin-top: 15px;
+  transition: background-color 0.3s ease;
+}
+
+.view-details-button:hover {
+  background-color: #218838; /* Tom de verde mais escuro no hover */
+}
+.delete-button {
+  background-color: #dc3545; /* Cor vermelha para o botão de deletar */
+  color: white;
+  font-size: 1rem;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.delete-button:hover {
+  background-color: #c82333; /* Tom de vermelho mais escuro no hover */
+  transform: translateY(-2px); /* Efeito de elevação no hover */
+}
+
+.delete-button:active {
+  background-color: #bd2130; /* Tom de vermelho mais escuro quando pressionado */
+  transform: translateY(1px); /* Efeito de pressão quando clicado */
+}

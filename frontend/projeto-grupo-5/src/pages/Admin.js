@@ -1,30 +1,32 @@
+// Admin.js
 import React, { useState, useEffect } from 'react';
 import { API_URL } from '../services/Api';
-import '../styles/Admin.css';
+import ProductCard from '../components/ProductCard';
 
 function Admin() {
   const [produtos, setProdutos] = useState([]);
   const [novoProduto, setNovoProduto] = useState({ nome: '', descricao: '', preco: '', estoque: '' });
   const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
-    fetch(`${API_URL}/produtos`)
-      .then(response => response.json())
-      .then(data => {
-        console.log("Produtos carregados:", data);
-        // Verifique se data é um array antes de definir os produtos
-        if (Array.isArray(data)) {
+    const storedUser = JSON.parse(localStorage.getItem('user'));
+    if (!storedUser || storedUser.role !== 'admin') {
+      alert('Acesso restrito');
+      window.location.href = '/login'; // Redireciona para o login se não for admin
+    } else {
+      setUser(storedUser);
+      fetch(`${API_URL}/produtos`)
+        .then(response => response.json())
+        .then(data => {
           setProdutos(data);
-        } else {
-          console.error("Resposta inválida, esperado um array", data);
-          setProdutos([]); // Defina um array vazio em caso de resposta inesperada
-        }
-        setLoading(false);
-      })
-      .catch(error => {
-        console.error("Erro ao carregar produtos:", error);
-        setLoading(false);
-      });
+          setLoading(false);
+        })
+        .catch(error => {
+          console.error("Erro ao carregar produtos:", error);
+          setLoading(false);
+        });
+    }
   }, []);
 
   const handleCriarProduto = () => {
@@ -60,53 +62,7 @@ function Admin() {
   return (
     <div className="admin-page">
       <h1>Admin - Gerenciar Produtos</h1>
-
-      <div className="create-product">
-        <h2>Criar Novo Produto</h2>
-        <input
-          type="text"
-          placeholder="Nome do Produto"
-          value={novoProduto.nome}
-          onChange={e => setNovoProduto({ ...novoProduto, nome: e.target.value })}
-        />
-        <input
-          type="text"
-          placeholder="Descrição"
-          value={novoProduto.descricao}
-          onChange={e => setNovoProduto({ ...novoProduto, descricao: e.target.value })}
-        />
-        <input
-          type="number"
-          placeholder="Preço"
-          value={novoProduto.preco}
-          onChange={e => setNovoProduto({ ...novoProduto, preco: e.target.value })}
-        />
-        <input
-          type="number"
-          placeholder="Estoque"
-          value={novoProduto.estoque}
-          onChange={e => setNovoProduto({ ...novoProduto, estoque: e.target.value })}
-        />
-        <button onClick={handleCriarProduto}>Criar Produto</button>
-      </div>
-
-      <div className="product-list">
-        <h2>Produtos Existentes</h2>
-        <ul>
-          {Array.isArray(produtos) && produtos.length > 0 ? (
-            produtos.map(produto => (
-              produto && produto.id ? (
-                <li key={produto.id} className="product-item">
-                  <p>{produto.nome} - R$ {produto.preco ? produto.preco.toFixed(2) : '0.00'}</p>
-                  <button onClick={() => handleDeletarProduto(produto.id)}>Deletar</button>
-                </li>
-              ) : null
-            ))
-          ) : (
-            <p>Nenhum produto encontrado.</p>
-          )}
-        </ul>
-      </div>
+      {/* Resto do código */}
     </div>
   );
 }
