@@ -1,3 +1,4 @@
+// components/Navbar.js
 import React from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/Navbar.css';
@@ -28,6 +29,11 @@ function Navbar() {
           <li>
             <Link to="/admin" className="admin-icon">
               <img src="/assets/icons/administrador.svg" alt="Admin" />
+            </Link>
+          </li>
+          <li>
+            <Link to="/register" className="register-icon">
+              <img src="/assets/icons/registro.svg" alt="Registrar" />
             </Link>
           </li>
         </ul>

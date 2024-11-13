@@ -1,3 +1,4 @@
+// pages/Products.js
 import React, { useState, useEffect } from 'react';
 import ProductCard from '../components/ProductCard';
 import { useNavigate } from 'react-router-dom';
@@ -25,6 +26,13 @@ function Products() {
   }, []);
 
   const addToCart = (product) => {
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (!user) {
+      alert('Você precisa estar logado para adicionar produtos ao carrinho.');
+      navigate('/login');
+      return;
+    }
+
     let currentCart = JSON.parse(localStorage.getItem('cart')) || [];
     currentCart.push(product);
     localStorage.setItem('cart', JSON.stringify(currentCart));
@@ -36,23 +44,10 @@ function Products() {
     navigate('/cart');
   };
 
-  const handleDeletarProduto = (id) => {
-    fetch(`${API_URL}/produtos/${id}`, {
-      method: 'DELETE',
-    })
-      .then(() => {
-        setProducts(products.filter(produto => produto.id !== id));
-      })
-      .catch(error => console.error("Erro ao deletar produto:", error));
-  };
-
   return (
     <div className="products">
       <h1>Produtos</h1>
-
-      {/* Exibe erro se houver */}
       {error && <p className="error">{error}</p>}
-
       <div className="product-list">
         {products.length === 0 ? (
           <p>Carregando produtos...</p>
@@ -61,16 +56,12 @@ function Products() {
             <ProductCard
               key={product.id}
               product={product}
-              onAddToCart={addToCart}  // Função de adicionar ao carrinho
-              onDelete={handleDeletarProduto}  // Função de deletar produto
+              onAddToCart={addToCart}
             />
           ))
         )}
       </div>
-
-      <div className="cart-info">
-        <button onClick={goToCart}>Ir para o Carrinho</button>
-      </div>
+      <button onClick={goToCart}>Ir para o carrinho</button>
     </div>
   );
 }

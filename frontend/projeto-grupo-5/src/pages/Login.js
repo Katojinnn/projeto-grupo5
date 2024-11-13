@@ -22,7 +22,7 @@ function Login() {
         if (data.success) {
           localStorage.setItem('isLoggedIn', 'true');
           localStorage.setItem('user', JSON.stringify(data.user));
-          navigate('/dashboard');
+          navigate(data.user.role === 'admin' ? '/admin' : '/dashboard');
         } else {
           setErro('Credenciais inválidas');
         }
