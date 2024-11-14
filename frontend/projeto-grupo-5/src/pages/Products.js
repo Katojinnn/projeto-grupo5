@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ProductCard from '../components/ProductCard';
 import { useNavigate } from 'react-router-dom';
 import { API_URL } from '../services/Api';
+import '../styles/Products.css';
 
 function Products() {
   const [products, setProducts] = useState([]);
@@ -36,14 +37,15 @@ function Products() {
   };
 
   return (
-    <div className="products">
-      <button className="cart-button" onClick={goToCart}>Ir para o Carrinho</button>
-      
+      <div className="products">
+    <div className="container">
       <h1>Produtos</h1>
+      <button className="cart-button" onClick={goToCart}>Ir para o Carrinho</button>  
+    </div>
 
       {error && <p className="error">{error}</p>}
 
-      <div className="product-list">
+    <div className="product-list">
         {products.length === 0 ? (
           <p>Carregando produtos...</p>
         ) : (

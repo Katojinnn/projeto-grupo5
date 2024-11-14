@@ -1,4 +1,3 @@
-// ProductDetail.js
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import '../styles/ProductDetail.css';
@@ -6,7 +5,7 @@ import { API_URL } from '../services/Api';
 
 function ProductDetail() {
   const { id } = useParams();
-  console.log("ID do produto:", id); // Verifique o ID capturado
+  console.log("ID do produto:", id);
 
   const [produto, setProduto] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -18,7 +17,7 @@ function ProductDetail() {
     }
 
     const url = `${API_URL}/produtos/${id}`;
-    console.log("URL da requisição:", url); // Log para verificar a URL
+    console.log("URL da requisição:", url);
 
     fetch(url)
       .then(response => {

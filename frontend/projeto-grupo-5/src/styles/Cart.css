@@ -51,8 +51,8 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: #691515; /* Cor de fundo do botão */
-    border-radius: 50px; /* Mantém bordas arredondadas */
+    background-color: #691515;
+    border-radius: 50px;
     z-index: -2;
   }
   

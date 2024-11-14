@@ -84,9 +84,9 @@
 }
 
 .navbar .logo-img {
-  width: 150px;  /* Ajuste a largura da imagem */
-  height: auto;  /* A altura será ajustada automaticamente para manter a proporção */
-  object-fit: contain;  /* Garante que a imagem se ajuste proporcionalmente */
+  width: 150px;
+  height: auto;
+  object-fit: contain;
 }
 
 .navbar .logo:hover {

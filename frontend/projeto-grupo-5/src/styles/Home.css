@@ -1,6 +1,6 @@
 .home {
-  background-color: #f7f7f7; /* Cinza claro */
-  color: #333333; /* Texto escuro para boa legibilidade */
+  background-color: #f7f7f7;
+  color: #333333;
   font-family: 'Arial', sans-serif;
   padding: 20px;
   border-radius: 8px;
@@ -10,24 +10,21 @@
   text-align: center;
 }
 
-/* Estilo para os títulos */
 .home h1 {
   font-size: 2.5em;
-  color: #333333; /* Texto escuro */
+  color: #333333;
   margin-bottom: 20px;
 }
 
-/* Estilo para os parágrafos */
 .home p {
   font-size: 1.2em;
   margin-bottom: 15px;
   line-height: 1.5;
-  color: #555555; /* Texto um pouco mais claro que o título */
+  color: #555555;
 }
 
-/* Estilo para links (se necessário, ex: se você adicionar uma seção de navegação) */
 .home a {
-  color: #007BFF; /* Azul claro */
+  color: #007BFF;
   text-decoration: none;
 }
 

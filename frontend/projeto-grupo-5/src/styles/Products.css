@@ -1,8 +1,8 @@
-/* Estilo para o botão Ir para o Carrinho */
 .cart-button {
-  margin-left: 850px;
-  margin-top: 80px;
-  transform: translateX(-50%);  /* Centraliza horizontalmente */
+  position: absolute;
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%);
   background-color: #3d3f3d;
   color: white;
   padding: 1rem 2rem;
@@ -13,50 +13,29 @@
   border: none;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
-  z-index: 1000;  /* Garante que o botão fique acima de outros elementos */
+  z-index: 1000; 
 }
 
-/* Estilo do Card do Produto */
-.product-card {
-  background-color: #fff;
-  border-radius: 12px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-  margin: 20px;
+.products {
+  position: relative; 
+  width: 100%;
+}
+
+.container {
   padding: 20px;
-  width: 280px;
   text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  text-decoration: none;
+  position: relative;
+  width: 100%;
 }
 
-.product-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+.container h1 {
+  margin-bottom: 20px; 
 }
 
-.product-card h3 {
-  font-size: 1.6rem;
-  margin-bottom: 15px;
-  color: #333;
-  line-height: 1.4;
-}
-
-.product-card p {
-  font-size: 1rem;
-  color: #666;
-  margin: 8px 0;
-  line-height: 1.6;
-}
-
-/* Ajustes para o Layout do Container de Produtos */
-.products-container {
-  padding: 30px;
-  text-align: center;
-}
-
-.products-list {
+.product-list {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
   width: 100%;
+  padding-top: 120px;
 }

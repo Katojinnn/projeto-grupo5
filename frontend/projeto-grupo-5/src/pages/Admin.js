@@ -12,12 +12,11 @@ function Admin() {
       .then(response => response.json())
       .then(data => {
         console.log("Produtos carregados:", data);
-        // Verifique se data é um array antes de definir os produtos
         if (Array.isArray(data)) {
           setProdutos(data);
         } else {
           console.error("Resposta inválida, esperado um array", data);
-          setProdutos([]); // Defina um array vazio em caso de resposta inesperada
+          setProdutos([]);
         }
         setLoading(false);
       })
