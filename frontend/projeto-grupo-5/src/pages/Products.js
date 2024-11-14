@@ -1,4 +1,3 @@
-// pages/Products.js
 import React, { useState, useEffect } from 'react';
 import ProductCard from '../components/ProductCard';
 import { useNavigate } from 'react-router-dom';
@@ -21,18 +20,10 @@ function Products() {
       })
       .catch(error => {
         setError("Erro ao carregar produtos: " + error.message);
-        console.error("Erro ao carregar produtos:", error);
       });
   }, []);
 
   const addToCart = (product) => {
-    const user = JSON.parse(localStorage.getItem('user'));
-    if (!user) {
-      alert('Você precisa estar logado para adicionar produtos ao carrinho.');
-      navigate('/login');
-      return;
-    }
-
     let currentCart = JSON.parse(localStorage.getItem('cart')) || [];
     currentCart.push(product);
     localStorage.setItem('cart', JSON.stringify(currentCart));
@@ -46,8 +37,12 @@ function Products() {
 
   return (
     <div className="products">
+      <button className="cart-button" onClick={goToCart}>Ir para o Carrinho</button>
+      
       <h1>Produtos</h1>
+
       {error && <p className="error">{error}</p>}
+
       <div className="product-list">
         {products.length === 0 ? (
           <p>Carregando produtos...</p>
@@ -61,7 +56,6 @@ function Products() {
           ))
         )}
       </div>
-      <button onClick={goToCart}>Ir para o carrinho</button>
     </div>
   );
 }

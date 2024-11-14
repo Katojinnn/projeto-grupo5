@@ -2,15 +2,18 @@
 
 .product-detail {
     padding: 20px;
+    text-decoration: none;
   }
   
   .product-detail h1 {
     font-size: 28px;
+    text-decoration: none;
   }
   
   .product-detail p {
     font-size: 18px;
     margin: 10px 0;
+    text-decoration: none;
   }
   
   .add-to-cart-button {

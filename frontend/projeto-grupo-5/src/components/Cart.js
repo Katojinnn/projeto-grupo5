@@ -1,21 +1,13 @@
-// pages/Cart.js
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import '../styles/Cart.css';
 
 function Cart() {
   const [cart, setCart] = useState([]);
-  const navigate = useNavigate();
 
   useEffect(() => {
     const storedCart = JSON.parse(localStorage.getItem('cart')) || [];
-    const storedUser = JSON.parse(localStorage.getItem('user'));
-
-    if (!storedUser) {
-      navigate('/login');
-    } else {
-      setCart(storedCart);
-    }
-  }, [navigate]);
+    setCart(storedCart);
+  }, []);
 
   const removeFromCart = (productId) => {
     const updatedCart = cart.filter(item => item.id !== productId);

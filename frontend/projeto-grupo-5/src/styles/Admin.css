@@ -11,11 +11,6 @@ body {
   color: #333;
 }
 
-/* Estilos principais */
-.admin {
-  padding: 50px 20px;
-  background-color: #f4f7fa;
-}
 
 .admin h1 {
   font-size: 3rem;
@@ -27,16 +22,15 @@ body {
   letter-spacing: 1px;
 }
 
-/* Lista de produtos */
-.admin .product-list {
+.admin-page .product-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 30px;
   margin-top: 40px;
   padding: 0 20px;
+  width: auto;
 }
 
-.admin .product-card {
+.product-card {
   background-color: #fff;
   border-radius: 15px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
@@ -50,33 +44,32 @@ body {
   position: relative;
 }
 
-.admin .product-card:hover {
+.product-card:hover {
   transform: translateY(-10px);
   box-shadow: 0 15px 45px rgba(0, 0, 0, 0.2);
 }
-
-.admin .product-card img {
+.product-card img {
   width: 100%;
   height: 220px;
   object-fit: cover;
   border-bottom: 5px solid #007bff;
 }
 
-.admin .product-card h3 {
+.product-card h3 {
   font-size: 1.6rem;
   color: #495057;
   padding: 15px 10px;
   font-weight: 600;
 }
 
-.admin .product-card p {
+.product-card p {
   font-size: 1rem;
   color: #868e96;
   padding: 0 10px 15px;
   flex-grow: 1;
 }
 
-.admin .product-card button {
+.product-card button {
   background-color: #007bff;
   color: white;
   font-size: 1rem;
@@ -88,13 +81,12 @@ body {
   font-weight: 600;
 }
 
-.admin .product-card button:hover {
+.product-card button:hover {
   background-color: #0056b3;
   transform: translateY(-2px);
 }
 
-/* Estilo do formulário de criação de produto */
-.admin .create-product {
+.create-product {
   display: flex;
   flex-direction: column;
   max-width: 600px;
@@ -106,12 +98,12 @@ body {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.admin .create-product:hover {
+.create-product:hover {
   transform: translateY(-5px);
   box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
 }
 
-.admin .create-product input {
+.create-product input {
   width: 100%;
   padding: 15px;
   margin-bottom: 20px;
@@ -121,7 +113,7 @@ body {
   background-color: #f8f9fa;
 }
 
-.admin .create-product button {
+.create-product button {
   width: 100%;
   padding: 15px;
   background-color: #28a745; /* Verde */
@@ -139,8 +131,14 @@ body {
   transform: translateY(-2px);
 }
 
-/* Botões de Deletar Produto */
-.admin .product-item {
+.product-item{
+  margin: 5px 5px 5px 5px;
+  padding: 5px 5px 5px 5px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+}
+.product-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -152,24 +150,57 @@ body {
   transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
 
-.admin .product-item:hover {
+.product-item:hover {
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
   transform: translateY(-5px);
 }
 
-.admin .product-item button {
-  background-color: #dc3545; /* Vermelho para deletar */
-  color: white;
-  font-size: 1rem;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+.product-item button {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: 50px; /* Borda arredondada */
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  letter-spacing: 0.15rem;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  width: auto;
+  max-width: 80%;
+  margin-top: 10px;
 }
 
-.admin .product-item button:hover {
-  background-color: #c82333;
-  transform: translateY(-2px);
+.product-item button::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #691515; /* Cor de fundo do botão */
+  border-radius: 50px; /* Mantém bordas arredondadas */
+  z-index: -2;
+}
+
+.product-item button::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  background-color: #be1e1e; /* Tom mais escuro de verde no hover */
+  transition: all 0.3s;
+  border-radius: 50px;
+  z-index: -1;
+}
+.product-item button:hover {
+  color: #fff;
+}
+
+.admin .product-item button:hover::before {
+  width: 100%;
 }
 

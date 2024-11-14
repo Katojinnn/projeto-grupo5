@@ -1,15 +1,12 @@
 // App.js
+import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from './pages/Home';
-import Login from './pages/Login';
-import Dashboard from './pages/Dashboard';
-import Products from './pages/Products';
-import Checkout from './pages/Checkout';
-import Admin from './pages/Admin';
-import Cart from './pages/Cart';
-import ProtectedRoute from './components/ProtectedRoute';
 import Navbar from './components/Navbar';
-import RegisterPage from './pages/RegisterPage';
+import Home from './pages/Home';
+import ProductDetail from './pages/ProductDetail'; 
+import Cart from './components/Cart';
+import Admin from './pages/Admin';
+import Products from './pages/Products';
 
 function App() {
   return (
@@ -17,37 +14,11 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/produtos" element={<Products />} />
-        <Route path="/register" element={<RegisterPage />} />
-        
-        <Route
-          path="/checkout"
-          element={
-            <ProtectedRoute role="user">
-              <Checkout />
-            </ProtectedRoute>
-          }
-        />
-
-        <Route
-          path="/admin"
-          element={
-            <ProtectedRoute role="admin">
-              <Admin />
-            </ProtectedRoute>
-          }
-        />
-
-        <Route
-          path="/cart"
-          element={
-            <ProtectedRoute role="user">
-              <Cart />
-            </ProtectedRoute>
-          }
-        />
+        {/* Alteração aqui para usar :id em vez de :productId */}
+        <Route path="/produtos/:id" element={<ProductDetail />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/admin" element={<Admin />} />
       </Routes>
     </Router>
   );

@@ -1,3 +1,4 @@
+// ProductDetail.js
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import '../styles/ProductDetail.css';
@@ -5,13 +6,29 @@ import { API_URL } from '../services/Api';
 
 function ProductDetail() {
   const { id } = useParams();
+  console.log("ID do produto:", id); // Verifique o ID capturado
+
   const [produto, setProduto] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`${API_URL}/produtos/${id}`)
-      .then(response => response.json())
+    if (!id) {
+      console.error("ID não encontrado na URL");
+      return;
+    }
+
+    const url = `${API_URL}/produtos/${id}`;
+    console.log("URL da requisição:", url); // Log para verificar a URL
+
+    fetch(url)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error("Erro na requisição");
+        }
+        return response.json();
+      })
       .then(data => {
+        console.log("Dados do produto recebidos:", data);
         setProduto(data);
         setLoading(false);
       })
@@ -26,13 +43,14 @@ function ProductDetail() {
     return <p>Produto não encontrado</p>;
   }
 
-  const preco = produto.preco ? produto.preco.toFixed(2) : '0.00';
+  const preco = produto.preco !== undefined && produto.preco !== null ? produto.preco.toFixed(2) : '0.00';
+  const descricao = produto.descricao || 'Descrição não disponível';
 
   return (
     <div className="product-detail">
       <h1>{produto.nome}</h1>
       <p>Preço: R$ {preco}</p>
-      <p>Descrição: {produto.descricao}</p>
+      <p>Descrição: {descricao}</p>
     </div>
   );
 }

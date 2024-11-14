@@ -1,11 +1,10 @@
 package grupo5.demo;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@CrossOrigin(origins = "https://poisonous-spooky-spirit-wr7xjgv9q54rhv47j-3000.app.github.dev/")
 @RequestMapping("/api/produtos")
 public class ProdutoController {
 
@@ -15,6 +14,13 @@ public class ProdutoController {
     @GetMapping
     public Iterable<Produto> listarProdutos() {
         return produtoRepo.findAll();
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Produto> buscarProdutoPorId(@PathVariable long id) {
+        return produtoRepo.findById(id)
+                .map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PostMapping
@@ -43,4 +49,3 @@ public class ProdutoController {
         produtoRepo.deleteById(id);
     }
 }
-
