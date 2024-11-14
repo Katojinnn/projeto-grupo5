@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 public class AdminController {
 
     @Autowired
-    private AdminController adminController;
+    private AdminRepo adminRepo;
 
     @GetMapping
     public Iterable<Admin> listarAdmin() {
