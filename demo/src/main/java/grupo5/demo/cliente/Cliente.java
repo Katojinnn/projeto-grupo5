@@ -1,11 +1,11 @@
-package grupo5.demo;
+package grupo5.demo.cliente;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 
 @Entity
-public class Admin{
+public class Cliente {
     @Id @GeneratedValue
     private long id;
     private String nome;
@@ -13,7 +13,7 @@ public class Admin{
     private String telefone;
     private String endereco;
 
-    public Admin() {}
+    public Cliente() {}
 
     public long getId() { return id; }
     public void setId(long id) { this.id = id; }

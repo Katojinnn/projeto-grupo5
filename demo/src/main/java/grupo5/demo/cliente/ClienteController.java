@@ -1,4 +1,4 @@
-package grupo5.demo;
+package grupo5.demo.cliente;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

@@ -1,4 +1,4 @@
-package grupo5.demo;
+package grupo5.demo.admin;
 
 import org.springframework.data.repository.CrudRepository;
 
