@@ -6,7 +6,7 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>3.3.5</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath/>
 	</parent>
 	<groupId>grupo5</groupId>
 	<artifactId>demo</artifactId>
@@ -51,7 +51,7 @@
 		<dependency>
     		<groupId>jakarta.servlet</groupId>
     		<artifactId>jakarta.servlet-api</artifactId>
-    		<version>5.0.0</version> <!-- Use a versão mais recente -->
+    		<version>5.0.0</version>
     		<scope>provided</scope>
 		</dependency>
 		<dependency>
@@ -59,6 +59,32 @@
         	<artifactId>javax.persistence-api</artifactId>
         	<version>2.2</version>
    	 	</dependency>
+		<dependency>
+    		<groupId>io.jsonwebtoken</groupId>
+    		<artifactId>jjwt</artifactId>
+    		<version>0.9.1</version>
+		</dependency>
+		<dependency>
+    		<groupId>org.springframework.boot</groupId>
+    		<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		<dependency>
+        	<groupId>org.projectlombok</groupId>
+        	<artifactId>lombok</artifactId>
+        	<scope>provided</scope>
+    	</dependency>
+		<dependency>
+    		<groupId>jakarta.servlet</groupId>
+    		<artifactId>jakarta.servlet-api</artifactId>
+    		<version>5.0.0</version>
+    		<scope>provided</scope>
+		</dependency>
+		<dependency>
+    <groupId>javax.servlet</groupId>
+    <artifactId>javax.servlet-api</artifactId>
+    <version>4.0.1</version>
+    <scope>provided</scope>
+</dependency>
 	</dependencies>
 
 	<build>

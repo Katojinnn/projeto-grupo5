@@ -1,6 +1,7 @@
 package grupo5.demo.cliente;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -11,6 +12,9 @@ public class ClienteController {
     @Autowired
     private ClienteRepo clienteRepo;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder; // Injeção do PasswordEncoder
+
     @GetMapping
     public Iterable<Cliente> listarClientes() {
         return clienteRepo.findAll();
@@ -18,6 +22,8 @@ public class ClienteController {
 
     @PostMapping
     public Cliente adicionarCliente(@RequestBody Cliente cliente) {
+        // Criptografa a senha antes de salvar
+        cliente.setSenha(passwordEncoder.encode(cliente.getSenha()));
         return clienteRepo.save(cliente);
     }
 
@@ -29,10 +35,17 @@ public class ClienteController {
                     cliente.setEmail(clienteAtualizado.getEmail());
                     cliente.setTelefone(clienteAtualizado.getTelefone());
                     cliente.setEndereco(clienteAtualizado.getEndereco());
+
+                    // Atualiza a senha, caso tenha sido modificada
+                    if (clienteAtualizado.getSenha() != null && !clienteAtualizado.getSenha().isEmpty()) {
+                        cliente.setSenha(passwordEncoder.encode(clienteAtualizado.getSenha()));
+                    }
+
                     return clienteRepo.save(cliente);
                 })
                 .orElseGet(() -> {
                     clienteAtualizado.setId(id);
+                    clienteAtualizado.setSenha(passwordEncoder.encode(clienteAtualizado.getSenha())); // Criptografa nova senha
                     return clienteRepo.save(clienteAtualizado);
                 });
     }
@@ -42,4 +55,3 @@ public class ClienteController {
         clienteRepo.deleteById(id);
     }
 }
-

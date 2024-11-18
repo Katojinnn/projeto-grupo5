@@ -12,6 +12,7 @@ public class Cliente {
     private String email;
     private String telefone;
     private String endereco;
+    private String senha;
 
     public Cliente() {}
 
@@ -25,4 +26,6 @@ public class Cliente {
     public void setTelefone(String telefone) {this.telefone = telefone;}
     public String getEndereco() {return endereco;}
     public void setEndereco(String endereco) {this.endereco = endereco;}
+    public String getSenha() { return senha; }
+    public void setSenha(String senha) { this.senha = senha; }
 }
