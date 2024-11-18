@@ -10,7 +10,7 @@ function Products() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch(`${API_URL}/produtos`)
+    fetch(`${API_URL}/api/produtos`)
       .then(response => response.json())
       .then(data => {
         if (Array.isArray(data)) {

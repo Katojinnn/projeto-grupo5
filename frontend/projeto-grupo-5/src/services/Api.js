@@ -1,7 +1,7 @@
-export const API_URL = 'https://cautious-pancake-wr7xjgv9qj9p39q69-8080.app.github.dev/api';
+export const API_URL = 'https://cautious-pancake-wr7xjgv9qj9p39q69-8080.app.github.dev';
 
 export const getProdutos = async () => {
-  const response = await fetch(`${API_URL}/produtos`);
+  const response = await fetch(`${API_URL}/api/produtos`);
   if (!response.ok) {
     throw new Error('Falha ao buscar produtos');
   }
@@ -9,7 +9,7 @@ export const getProdutos = async () => {
 };
 
 export const getProdutoById = async (id) => {
-  const response = await fetch(`${API_URL}/produtos/${id}`);
+  const response = await fetch(`${API_URL}/api/produtos/${id}`);
   if (!response.ok) {
     throw new Error('Falha ao buscar o produto');
   }
@@ -17,7 +17,7 @@ export const getProdutoById = async (id) => {
 };
 
 export const criarPedido = async (pedido) => {
-  const response = await fetch(`${API_URL}/pedidos`, {
+  const response = await fetch(`${API_URL}/api/pedidos`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -31,7 +31,7 @@ export const criarPedido = async (pedido) => {
 };
 
 export const getClientes = async () => {
-  const response = await fetch(`${API_URL}/clientes`);
+  const response = await fetch(`${API_URL}/api/clientes`);
   if (!response.ok) {
     throw new Error('Falha ao buscar clientes');
   }
@@ -39,7 +39,7 @@ export const getClientes = async () => {
 };
 
 export const criarCliente = async (cliente) => {
-  const response = await fetch(`${API_URL}/clientes`, {
+  const response = await fetch(`${API_URL}/api/clientes`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

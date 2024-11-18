@@ -16,7 +16,7 @@ function ProductDetail() {
       return;
     }
 
-    const url = `${API_URL}/produtos/${id}`;
+    const url = `${API_URL}/api/produtos/${id}`;
     console.log("URL da requisição:", url);
 
     fetch(url)
