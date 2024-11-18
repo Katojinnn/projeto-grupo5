@@ -39,15 +39,32 @@ export const getClientes = async () => {
 };
 
 export const criarCliente = async (cliente) => {
-  const response = await fetch(`${API_URL}/api/clientes`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(cliente),
-  });
-  if (!response.ok) {
-    throw new Error('Falha ao criar cliente');
+  const token = localStorage.getItem('token');
+  if (!token) {
+    throw new Error('Token de autenticação não encontrado');
   }
-  return response.json();
+
+  try {
+    const response = await fetch(`${API_URL}/api/clientes`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      },
+      body: JSON.stringify(cliente),
+    });
+
+    // Verifica se a resposta não foi bem-sucedida
+    if (!response.ok) {
+      const errorData = await response.json();  // Captura o erro retornado pela API
+      throw new Error(`Erro ao criar cliente: ${response.status} - ${errorData.message || response.statusText}`);
+    }
+
+    return response.json();
+  } catch (err) {
+    console.error('Erro ao criar cliente:', err.message);
+    throw err;  // Propaga o erro
+  }
 };
+
+
